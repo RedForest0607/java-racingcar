@@ -1,57 +1,63 @@
 package util;
 
-import static java.lang.Integer.*;
+import static Constants.Speed.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Car {
+
 	private String name;
-	private int speed;
+	private Integer position;
+	private CarUtils carUtils;
 
 	public Car() {
 		name = "";
 	}
 
-	public Car(String name, int speed) {
-		if(name.length() < 1 || name.length() > 5 || speed < 0) {
+	public Car(String name) {
+		if(name.length() < 1 || name.length() > 5) {
 			throw new IllegalArgumentException();
 		}
 
+		this.position = 0;
 		this.name = name;
-		this.speed = speed;
 	}
 
 	public String[] split(String s) {
 		return s.split(",");
 	}
 
-	public static ArrayList<Car> createCar(String name, String speed) {
+	public static ArrayList<Car> createCars(String name) {
 
 		String[] names = name.split(",");
-		String[] speedList = speed.split(",");
 
-		if (names.length != speedList.length) {
-			throw new IllegalArgumentException();
-		}
-
-		ArrayList<Integer> integerSpeedList = new ArrayList<>();
-		for (int i = 0; i < speedList.length; i++) {
-			try {
-				integerSpeedList.add(Integer.parseInt(speedList[i]));
-			} catch (NumberFormatException e) {
-				throw new IllegalArgumentException();
-			}
-		}
 
 		ArrayList<Car> result = new ArrayList<>();
 
 		for (int i = 0; i < names.length; i++) {
 			try {
-				result.add(new Car(names[i], integerSpeedList.get(i)));
+				result.add(new Car(names[i]));
 			} catch (IllegalArgumentException e) {
 				throw new IllegalArgumentException();
 			}
 		}
 		return result;
+	}
+
+	public void accelerate(int speed) throws Exception{
+		if (carUtils.isValidSpeed(speed)) {
+			this.position += speed;
+		} else {
+			throw new Exception();
+		}
+	}
+
+	public void accelerate() {
+		this.position += carUtils.randomIntGeneratorInBound();
+	}
+
+	public Integer getPosition() {
+		return position;
 	}
 }
