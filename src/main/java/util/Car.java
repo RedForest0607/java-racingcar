@@ -3,9 +3,11 @@ package util;
 import static Constants.Speed.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class Car {
+	private static final int BOUNDARY = 4;
 
 	private String name;
 	private Integer position;
@@ -24,8 +26,9 @@ public class Car {
 		this.name = name;
 	}
 
-	public String[] split(String s) {
-		return s.split(",");
+	public Car(String name, int position) {
+		this.name = name;
+		this.position = position;
 	}
 
 	public static ArrayList<Car> createCars(String name) {
@@ -45,19 +48,32 @@ public class Car {
 		return result;
 	}
 
-	public void accelerate(int speed) throws Exception{
-		if (carUtils.isValidSpeed(speed)) {
-			this.position += speed;
-		} else {
-			throw new Exception();
+	public void accelerate(int speed) {
+		if (speed >= BOUNDARY) {
+			this.position++;
 		}
-	}
-
-	public void accelerate() {
-		this.position += carUtils.randomIntGeneratorInBound();
 	}
 
 	public Integer getPosition() {
 		return position;
+	}
+
+	public int compare(Car comparedCar) {
+		comparedCar.position
+		return -10;
+	}
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Car car = (Car)o;
+		return Objects.equals(name, car.name) && Objects.equals(position, car.position);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, position);
 	}
 }

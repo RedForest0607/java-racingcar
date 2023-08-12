@@ -24,4 +24,15 @@ class CarUtilsTest {
 		assertThat(carUtils.checkCarName("")).isFalse();
 		assertThat(carUtils.checkCarName("helloWorldEveryOne")).isFalse();
 	}
+
+		@Test
+	@DisplayName("참여자를 쉼표를 기준으로 구분")
+	void 참여자_구분() {
+
+		String[] result = carUtils.split("1,2,3");
+
+		assertThat(
+			result.length
+		).isEqualTo(3);
+	}
 }

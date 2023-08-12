@@ -10,6 +10,10 @@ public class CarUtils {
 		return name.length() >= 1 && name.length() <= 5;
 	}
 
+	public String[] split(String s) {
+		return s.split(",");
+	}
+
 	public boolean isValidSpeed(int speed) {
 		return speed > SPEED_MIN.getValue() && speed < SPEED_MAX.getValue();
 	}
