@@ -1,21 +1,15 @@
-package util;
+package domains;
 
-import static Constants.Speed.*;
+import util.CarUtils;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Random;
 
 public class Car {
 	private static final int BOUNDARY = 4;
 
-	private String name;
+	public String name;
 	private Integer position;
-	private CarUtils carUtils;
-
-	public Car() {
-		name = "";
-	}
 
 	public Car(String name) {
 		if(name.length() < 1 || name.length() > 5) {
@@ -59,8 +53,9 @@ public class Car {
 	}
 
 	public int compare(Car comparedCar) {
-		comparedCar.position
-		return -10;
+		int result = 0;
+		result = this.position > comparedCar.position ? 1 : -1;
+		return result;
 	}
 	@Override
 	public boolean equals(Object o) {

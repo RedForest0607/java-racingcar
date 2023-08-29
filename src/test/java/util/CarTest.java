@@ -1,17 +1,16 @@
 package util;
 
 import static org.assertj.core.api.Assertions.*;
-import static util.Car.*;
+import static domains.Car.*;
 
 import java.util.ArrayList;
 
+import domains.Car;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import Constants.Speed;
 
 public class CarTest {
 
@@ -82,7 +81,6 @@ public class CarTest {
 	void 자동차_속도가_4이상_전진(int speed) {
 
 		Car car = new Car("test");
-
 		car.accelerate(speed);
 
 		assertThat(car.getPosition()).isEqualTo(1);

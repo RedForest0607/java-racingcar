@@ -1,6 +1,6 @@
 package util;
 
-import static Constants.Speed.*;
+import static constants.Speed.*;
 
 import java.util.Random;
 
